@@ -4,6 +4,17 @@
 
 using namespace std;
 
+/*
+LIFO (last in first out) -> nilai terakhir lebih dulu dilayani
+push: penambahan nilai baru ke stack
+pop: pengambilan elemen pada stack
+CreateStack : membuat stack baru
+EmptyStack : proses pengecekan stack telah terisi atau tidak
+FullStack : proses cek kapasitas stack mencapai kapasitasnya
+DestroyStack : mengosongkan isi dari stack
+*/
+
+
 struct node{
   int data;
   node *link;
@@ -66,12 +77,13 @@ int main(){
           system("cls");
           cout << "AKHIR PROGRAM" << endl << endl;
           return 0;
-          default:
+          
+        default:
           cout << "pilihan tidak ditemukan. ";
           getch();
           return main();
       }getch();     
-    } while (pilihan <= 5 and pilihan >=1);
+    } while (pilihan <= 4 and pilihan >=1);
 
 return 0;
 }
@@ -90,7 +102,7 @@ void pop(){
   nilai_pop = top->data;
   delete top;
   top = x;
-  jumlah++;
+  jumlah = jumlah++;
 }
 
 void push(int i){
