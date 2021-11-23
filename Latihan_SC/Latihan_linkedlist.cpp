@@ -1,5 +1,6 @@
 #include <iostream>
 #include <conio.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -39,7 +40,8 @@ int main(){
 		
 		switch(pilihan)
 		{
-			
+
+// MENU 1			
 			case CREATE:
 				if(isEmpty()){
 					cout << "Masukkan nilai" << endl;
@@ -50,7 +52,9 @@ int main(){
 				}				
 				else
 					cout << "Node awal sudah dibuat" << endl;
-				break;				
+				break;
+
+// MENU 2				
 			case INSERT:
 				if(isEmpty())
 					cout << "Node awal belum dibuat" << endl;
@@ -79,10 +83,16 @@ int main(){
 							cout << "Tambah node di tengah" << endl;
 							cout << "=====================" << endl << endl;
 							cout << "Node dimasukkan setelah node dengan nilai : "; cin >> j;
-							cout << "masukkan nilai node baru                  : "; cin >> i; 
-							addNodeMidle(i,j);
-							cout << endl;
-							cout << "nilai " << i << " berhasil dimasukkan di node tengah.";							
+								if(tail->data == j){
+									cout << "Penambahan data gagal, node dengaan nilai " << j << " Berada pada posisi belakang. ";
+									getch();
+								}
+								else {
+									cout << "masukkan nilai node baru                  : "; cin >> i;
+									addNodeMidle(i,j);
+									cout << endl;
+									cout << "nilai " << i << " berhasil dimasukkan di node tengah. ";
+								}
 						}
 						break;
 					}
@@ -105,7 +115,8 @@ int main(){
 					cout << "PIlihan tidak ditemukan" << endl;				
 				}
 				break;
-				
+
+//MENU 3				
 			case DELETE:
 				system("cls");
 				if(isEmpty()){
@@ -122,7 +133,7 @@ int main(){
 					if(pilihan == 1){
 						system("cls");
 						deleteNodeFront();
-						cout << "Node paling depan berhasil dihapus.";
+						cout << "Node paling depan dengan nilai " << x << " berhasil dihapus.";
 						break;
 					}
 					else if(pilihan == 2){
@@ -136,7 +147,7 @@ int main(){
 					else if(pilihan == 3){
 						system("cls");
 						deleteNodelast();
-						cout << "Node paling akhir berhasil di hapus.";
+						cout << "Node posisi akhir berhasil di hapus.";			
 						break;
 					}
 					else if(pilihan == 4){
@@ -149,7 +160,8 @@ int main(){
 					}					
 				}
 				break;
-				
+
+//MENU 4				
 			case READ:
 				if(isEmpty()){
 					cout << "Linked List masih kosong" << endl;
@@ -160,26 +172,21 @@ int main(){
 					readNode();					
 				}
 				break;
-				
+
+//MENU 5				
 			case FINISH:
-				system("cls");
-				cout << "AKHIR PROGRAM" << endl;
-				cout << "=============" << endl;
-				return 0;
-				break;
+				exit(0);
 				
 			default:
 				cout << "Pilihan tidak ditemukan" << endl;
 			
-		}getch();
-		
-	}while(pilihan >= 1 and pilihan <=5);
-	
+		}getch();	
+	}while(pilihan >= 1 and pilihan <=5);	
 	return 0;
 }
 
 
-//fungsi melihat jumlsh node
+//fungsi melihat jumlah node
 int getJmlNode(){
 	x = head;
 	int i=0;
@@ -245,12 +252,13 @@ void deleteNodeMidle(int i){
 }
 
 void deleteNodelast(){
-	x = head;
-	while(x->next != tail) x = x->next;
-	tail = x;
-	delete (x->next);
-	tail->next = NULL;
+		x = head;
+		while(x->next != tail) x = x->next;
+		tail = x;
+		delete (x->next);
+		tail->next = NULL;
 }
+
 
 //4. fungsi READ
 void readNode(){
